@@ -1,8 +1,8 @@
 # Independent verification — PASS
 
-**Work order:** `reading-rail-verify-1`  
-**Candidate:** `b56e046777f4262cbd9162b87d7c4b77e71f941a`  
-**Verified:** 2026-08-27  
+**Work order:** `reading-rail-verify-1`
+**Candidate:** `b56e046777f4262cbd9162b87d7c4b77e71f941a`
+**Verified:** 2026-08-27
 **Live URL:** https://reading-rail.sociobot.in
 
 ## Verdict
