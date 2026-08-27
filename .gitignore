@@ -1,6 +1,9 @@
 node_modules/
+.wxt/
+.output/
 dist/
-.env
+coverage/
 *.log
-graphify-out/
-.DS_Store
+.factory/*.png
+.factory/lighthouse.json
+.factory/npm-audit.json

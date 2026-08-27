@@ -1,0 +1,16 @@
+{
+  "slug": "reading-rail",
+  "title": "Reading Rail",
+  "territory": "utilities",
+  "user": "A reader with dyslexia or visual crowding who needs to keep their place in dense browser text and review one manageable line or paragraph at a time.",
+  "smallest_useful_product": "A browser extension with a movable focus rail, dimmable surroundings, per-site text-spacing presets, and optional browser text-to-speech for the current line.",
+  "success_measure": "In a timed proofreading test, users retain their place after an interruption at least 25% more often than with their ordinary browser view.",
+  "artifact_class": "browser-extension",
+  "monetization": "free",
+  "constraints": [
+    "No content upload or analytics by default",
+    "Keep native selection, links, and screen-reader behavior intact",
+    "Offer instant escape and reset",
+    "Support reflow and WCAG text spacing"
+  ]
+}
