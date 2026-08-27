@@ -1,4 +1,20 @@
-# Reading Rail v1 handoff
+# Reading Rail v1 handoff — independently verified PASS
+
+## Verification status
+
+**PASS** — independent QA on 2026-08-27 verified candidate
+`b56e046777f4262cbd9162b87d7c4b77e71f941a` and the live deployment at
+https://reading-rail.sociobot.in. The live home/legal pages, JS, and CSS
+byte-match the candidate. The live extension ZIP has different archive
+metadata but every unpacked artifact is byte-identical and the downloaded ZIP
+passed a fresh extension smoke test.
+
+See [verification.md](verification.md) for exact command results, functional
+coverage, accessibility/performance results, headers, privacy/network evidence,
+and findings. There are no critical, high, or medium shipped-product defects.
+The only product observation is low severity: hosted pages do not currently
+send CSP/anti-framing/COOP headers. Full `npm audit` advisories are confined to
+development-only WXT dependencies; `npm audit --omit=dev` is clean.
 
 ## Shipped
 
