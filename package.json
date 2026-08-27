@@ -1,0 +1,33 @@
+{
+  "name": "reading-rail",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wxt",
+    "dev:site": "vite --config vite.site.config.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "postinstall": "wxt prepare",
+    "assets:optimize": "node scripts/optimize-assets.mjs",
+    "build:extension": "wxt build && wxt zip",
+    "build:site": "wxt build && wxt zip && vite build --config vite.site.config.ts && node scripts/package-extension.mjs",
+    "build": "npm run clean && npm run build:site",
+    "clean": "node scripts/clean.mjs",
+    "check": "tsc --noEmit",
+    "verify:site": "node scripts/verify-site.mjs",
+    "verify:extension": "node scripts/verify-extension.mjs"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.62.1",
+    "@types/chrome": "^0.0.321",
+    "jsdom": "^26.1.0",
+    "lighthouse": "^13.4.1",
+    "sharp": "^0.35.4",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5",
+    "vitest": "^3.1.4",
+    "wxt": "^0.20.6"
+  }
+}

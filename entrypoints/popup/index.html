@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reading Rail controls</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#controls">Skip to controls</a>
+    <header class="masthead">
+      <div class="brand-mark" aria-hidden="true"><span></span></div>
+      <div>
+        <p class="kicker">In-place reading guide</p>
+        <h1>Reading Rail</h1>
+      </div>
+      <span class="edition">RR/01</span>
+    </header>
+
+    <main id="controls">
+      <section class="availability" id="unavailable" hidden aria-labelledby="unavailable-title">
+        <p class="section-no">Page note</p>
+        <h2 id="unavailable-title">This page is protected</h2>
+        <p>Browsers do not allow extensions on settings, store, or new-tab pages. Open an article or document and try again.</p>
+      </section>
+
+      <div id="app" hidden>
+        <section class="rail-state" aria-labelledby="rail-state-title">
+          <div>
+            <p class="section-no">Current site</p>
+            <h2 id="rail-state-title"><span id="host-name">This page</span></h2>
+          </div>
+          <button class="power" id="toggle" type="button" aria-pressed="false">
+            <span class="power-dot" aria-hidden="true"></span>
+            <span id="toggle-label">Start rail</span>
+          </button>
+        </section>
+
+        <p class="place" id="place">Finding readable text…</p>
+
+        <section class="move-row" aria-labelledby="move-title">
+          <div>
+            <p class="section-no">01 / Position</p>
+            <h2 id="move-title">Move your place</h2>
+          </div>
+          <div class="stepper">
+            <button id="previous" type="button" aria-label="Move to previous line">↑</button>
+            <button id="next" type="button" aria-label="Move to next line">↓</button>
+          </div>
+        </section>
+
+        <section aria-labelledby="focus-title">
+          <p class="section-no">02 / Focus</p>
+          <h2 id="focus-title">Reading unit</h2>
+          <div class="segmented">
+            <label><input type="radio" name="mode" value="line" /><span>One line</span></label>
+            <label><input type="radio" name="mode" value="paragraph" /><span>Paragraph</span></label>
+          </div>
+          <label class="range-label" for="dim">
+            <span>Surrounding dim</span><output id="dim-output" for="dim">68%</output>
+          </label>
+          <input id="dim" type="range" min="25" max="88" step="1" value="68" />
+        </section>
+
+        <section aria-labelledby="spacing-title">
+          <p class="section-no">03 / Page spacing</p>
+          <h2 id="spacing-title">Set for this site</h2>
+          <fieldset class="preset-list">
+            <legend class="sr-only">Text spacing preset</legend>
+            <label><input type="radio" name="spacing" value="original" /><span><b>Original</b><small>Leave page text unchanged</small></span></label>
+            <label><input type="radio" name="spacing" value="open" /><span><b>Open</b><small>1.5 lines · 0.04em letters</small></span></label>
+            <label><input type="radio" name="spacing" value="wide" /><span><b>Wide</b><small>1.7 lines · 0.12em letters</small></span></label>
+          </fieldset>
+        </section>
+
+        <section class="read-row" aria-labelledby="read-title">
+          <div>
+            <p class="section-no">04 / Listen</p>
+            <h2 id="read-title">Current text</h2>
+          </div>
+          <button class="secondary" id="speak" type="button">Read aloud</button>
+        </section>
+
+        <details>
+          <summary>Keyboard guide</summary>
+          <dl>
+            <div><dt><kbd>↑</kbd> <kbd>↓</kbd></dt><dd>Move the rail</dd></div>
+            <div><dt><kbd>Esc</kbd></dt><dd>Hide instantly</dd></div>
+            <div><dt><kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd></dt><dd>Toggle from any page</dd></div>
+            <div><dt><kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd></dt><dd>Read or stop</dd></div>
+          </dl>
+        </details>
+
+        <button class="reset" id="reset" type="button">Reset this site</button>
+      </div>
+    </main>
+    <footer><span>Private by design</span><span>Nothing leaves this browser</span></footer>
+    <p class="sr-only" id="status" role="status" aria-live="polite"></p>
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>
