@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Reading Rail is a free, private browser extension that keeps your place in dense text with a movable focus rail." />
+    <meta name="theme-color" content="#f2efe7" />
+    <title>Reading Rail — keep your place on any page</title>
+    <link rel="icon" href="/assets/mark.svg" type="image/svg+xml" />
+    <script type="module" src="/src/main.ts"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header class="site-header wrap">
+      <a class="wordmark" href="/" aria-label="Reading Rail home">
+        <svg aria-hidden="true" viewBox="0 0 36 36"><rect x="1" y="1" width="34" height="34"/><path d="M7 10h22M7 18h22M7 26h22"/><path class="accent-line" d="M5 16h26v5H5z"/></svg>
+        <span>Reading Rail</span>
+      </a>
+      <nav aria-label="Main navigation">
+        <a href="#how">How it works</a>
+        <a href="#privacy">Privacy</a>
+        <a class="nav-download" href="/downloads/reading-rail-chrome.zip" download>Download v1.0</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero wrap" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow"><span>Accessibility desk</span><span>Free browser extension</span></p>
+          <h1 id="hero-title">Keep your place.<br /><em>Keep the page.</em></h1>
+          <p class="dek">A movable focus rail for dense browser text. Read one line or paragraph at a time—without copying, rewriting, or sending the page anywhere.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="/downloads/reading-rail-chrome.zip" download>Download for Chromium <span aria-hidden="true">↓</span></a>
+            <a class="text-link" href="#install">Installation guide</a>
+          </div>
+          <p class="fine-print">Free forever · Chrome, Edge, Brave &amp; Chromium · Works offline</p>
+        </div>
+        <figure class="hero-figure">
+          <picture>
+            <source type="image/avif" srcset="/assets/hero-reading-rail-768.avif 768w, /assets/hero-reading-rail-1280.avif 1280w" sizes="(max-width: 780px) 100vw, 52vw" />
+            <source type="image/webp" srcset="/assets/hero-reading-rail-768.webp 768w, /assets/hero-reading-rail-1280.webp 1280w" sizes="(max-width: 780px) 100vw, 52vw" />
+            <img src="/assets/hero-reading-rail-1280.jpg" width="1280" height="853" fetchpriority="high" decoding="async" alt="A blue reading ruler crossing layered strips of abstract newsprint, revealing one focused line." />
+          </picture>
+          <figcaption><span>Fig. 01</span> One clear line, the original page intact.</figcaption>
+        </figure>
+        <div class="hero-folio" aria-hidden="true">No. 01<br />2026</div>
+      </section>
+
+      <div class="ticker" aria-hidden="true"><span>MOVE WITH ARROW KEYS</span><span>PRESS ESCAPE TO LEAVE</span><span>NOTHING LEAVES YOUR BROWSER</span><span>MOVE WITH ARROW KEYS</span></div>
+
+      <section class="proof wrap" id="how" aria-labelledby="proof-title">
+        <div class="section-intro">
+          <p class="section-label">The working proof / 01</p>
+          <h2 id="proof-title">Try the rail before you install it.</h2>
+          <p>Move through this excerpt. The real extension finds readable lines on the page and keeps its guide aligned through scroll and reflow.</p>
+        </div>
+        <div class="demo-shell">
+          <div class="demo-toolbar">
+            <span>Reading sample</span>
+            <div class="demo-controls">
+              <button type="button" id="demo-up" aria-label="Move focus to previous line">↑</button>
+              <button type="button" id="demo-down" aria-label="Move focus to next line">↓</button>
+            </div>
+          </div>
+          <div class="demo-paper" id="demo-paper" tabindex="0" aria-label="Interactive Reading Rail demonstration. Use up and down arrow keys.">
+            <p class="demo-line">Reading can become harder when every line asks for attention at once.</p>
+            <p class="demo-line">A small landmark makes returning after an interruption less demanding.</p>
+            <p class="demo-line">Reading Rail follows the text while the rest of the page stays exactly where it is.</p>
+            <p class="demo-line">Links still work, words stay selectable, and Escape clears the view immediately.</p>
+            <div class="demo-rail" aria-hidden="true"><span>Line 1 of 4</span></div>
+          </div>
+          <p class="demo-note" id="demo-status" role="status">Line 1 of 4. Use the arrow buttons or keys.</p>
+        </div>
+      </section>
+
+      <section class="features wrap" aria-labelledby="features-title">
+        <div class="section-intro">
+          <p class="section-label">Four useful parts / 02</p>
+          <h2 id="features-title">A ruler, not a reader mode.</h2>
+        </div>
+        <ol class="feature-grid">
+          <li>
+            <span class="feature-no">01</span>
+            <svg aria-hidden="true" viewBox="0 0 96 72"><path d="M8 15h80M8 29h80M8 43h80M8 57h80"/><rect x="4" y="25" width="88" height="9"/></svg>
+            <h3>Focus in place</h3>
+            <p>Choose one rendered line or the whole paragraph. The surrounding page dims while the original content remains live.</p>
+          </li>
+          <li>
+            <span class="feature-no">02</span>
+            <svg aria-hidden="true" viewBox="0 0 96 72"><path d="M12 19h72M12 36h72M12 53h72"/><path class="accent-stroke" d="M8 16h80M8 39h80M8 62h80"/></svg>
+            <h3>Open the spacing</h3>
+            <p>Save Original, Open, or WCAG-width line and letter spacing per site. No font claims and no permanent page changes.</p>
+          </li>
+          <li>
+            <span class="feature-no">03</span>
+            <svg aria-hidden="true" viewBox="0 0 96 72"><path d="M12 27h14l15-12v42L26 45H12zM52 26c8 7 8 13 0 20M62 18c16 14 16 29 0 43"/></svg>
+            <h3>Listen when useful</h3>
+            <p>Ask the browser’s built-in voice to read the current line. Stop it with the same button or shortcut.</p>
+          </li>
+          <li>
+            <span class="feature-no">04</span>
+            <svg aria-hidden="true" viewBox="0 0 96 72"><rect x="12" y="12" width="72" height="48" rx="2"/><path d="M24 24h13v12H24zM45 24h27M45 36h20M24 47h48"/></svg>
+            <h3>Stay on the keyboard</h3>
+            <p>Toggle, move, and read with shortcuts. Escape hides everything immediately, with no keyboard trap.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="privacy-band" id="privacy" aria-labelledby="privacy-title">
+        <div class="wrap privacy-grid">
+          <p class="section-label">The privacy column / 03</p>
+          <div>
+            <h2 id="privacy-title">Your reading stays between you and the page.</h2>
+            <p>Reading Rail has no account, analytics, ads, network requests, or content upload. It stores only your settings for each site in your browser.</p>
+            <a class="text-link light" href="/privacy/">Read the plain-language privacy policy</a>
+          </div>
+          <dl>
+            <div><dt>Content sent</dt><dd>None</dd></div>
+            <div><dt>Tracking</dt><dd>None</dd></div>
+            <div><dt>Account</dt><dd>Not needed</dd></div>
+            <div><dt>Offline</dt><dd>Fully</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="install wrap" id="install" aria-labelledby="install-title">
+        <div class="section-intro">
+          <p class="section-label">Install the edition / 04</p>
+          <h2 id="install-title">Three minutes to a quieter page.</h2>
+        </div>
+        <ol class="install-steps">
+          <li><span>1</span><div><h3>Download</h3><p>Save and unzip the Reading Rail package.</p></div></li>
+          <li><span>2</span><div><h3>Open extensions</h3><p>Visit <code>chrome://extensions</code> and switch on Developer mode.</p></div></li>
+          <li><span>3</span><div><h3>Load the folder</h3><p>Choose “Load unpacked,” select the unzipped folder, then pin the rail.</p></div></li>
+        </ol>
+        <div class="closing-rule">
+          <div><p class="section-label">Ready when the page is dense</p><p class="closing-copy">Start with one line.</p></div>
+          <a class="button primary" href="/downloads/reading-rail-chrome.zip" download>Download Reading Rail <span aria-hidden="true">↓</span></a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer wrap">
+      <div class="wordmark"><svg aria-hidden="true" viewBox="0 0 36 36"><rect x="1" y="1" width="34" height="34"/><path d="M7 10h22M7 18h22M7 26h22"/><path class="accent-line" d="M5 16h26v5H5z"/></svg><span>Reading Rail</span></div>
+      <p>Original imagery generated for Reading Rail with the Factory image model.</p>
+      <nav aria-label="Legal"><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="https://github.com/B-Divyesh/sf-reading-rail">Source</a></nav>
+    </footer>
+  </body>
+</html>
