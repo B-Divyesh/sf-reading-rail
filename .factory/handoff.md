@@ -2,8 +2,8 @@
 
 ## Release identity
 
-- Implementation SHA: `ee5cd8c0254ab485fdd152b1ed05c0067962e812`
-- Documentation SHA: `821a21c61668229cb2629fad1c841ff131045f67` (repair handoff report).
+- Implementation SHA: `a1ad87e6447fbddec21b74e6364406137b3ffb3a`
+- Documentation SHA: recorded in the follow-up documentation commit for this revised handoff.
 - Live URL: <https://reading-rail.sociobot.in>
 - Deployed: 2026-09-06 via the existing `sf-reading-rail` static app. The
   deployment completed successfully before the HTTPS cold checks below.
@@ -15,7 +15,7 @@
   nothing is saved** label, **Reset demo**, and **Start for real**.
 - Kept demo state isolated in `demo:reading-rail:sample-state`. It neither
   reads nor changes extension storage or a non-demo browser-storage key.
-- Added `.factory/claims.json`, `.factory/demo.md`, and 14 tagged Playwright
+- Added `.factory/claims.json`, `.factory/demo.md`, and 15 tagged Playwright
   claim tests. The tests load the packaged extension against `/demo/` in fresh
   browser contexts where the claim concerns the extension.
 - Rewrote the first screen in plain words: it names the job, readers with
@@ -65,7 +65,7 @@ npm audit --omit=dev
 Results:
 
 - `npm ci`: pass.
-- `npm test`: pass — 6 unit tests and 14 tagged clean-consumer claim tests.
+- `npm test`: pass — 6 unit tests and 15 tagged clean-consumer claim tests.
 - `npm run check`: pass.
 - `npm run build`: pass — creates `dist/site/`, `dist/extension/`, and the
   downloadable ZIP.
