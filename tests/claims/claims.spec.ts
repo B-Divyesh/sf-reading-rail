@@ -231,6 +231,28 @@ test('@claim:reset-local returns this site to its default reading settings', asy
   }
 });
 
+test('@claim:local-settings keeps this site’s rail settings after a page reload', async () => {
+  const session = await openExtension();
+  try {
+    await startRail(session);
+    await session.popup.locator('input[name="mode"][value="paragraph"]').check({ force: true });
+    await session.popup.locator('#dim').evaluate((input: HTMLInputElement) => {
+      input.value = '88';
+      input.dispatchEvent(new Event('change', { bubbles: true }));
+    });
+    await session.popup.locator('input[name="spacing"][value="wide"]').check({ force: true });
+    await session.page.reload({ waitUntil: 'networkidle' });
+    await session.popup.reload();
+    await session.popup.locator('#app').waitFor({ state: 'visible' });
+    await expect(session.popup.locator('#toggle')).toHaveAttribute('aria-pressed', 'true');
+    await expect(session.popup.locator('input[name="mode"][value="paragraph"]')).toBeChecked();
+    await expect(session.popup.locator('#dim-output')).toHaveText('88%');
+    await expect(session.popup.locator('input[name="spacing"][value="wide"]')).toBeChecked();
+  } finally {
+    await session.close();
+  }
+});
+
 test('@claim:private-network uses no account, upload, or tracking request', async () => {
   const session = await openExtension();
   const requests: Array<{ method: string; url: string }> = [];

@@ -84,6 +84,13 @@
     "sandbox": "Fresh packaged extension and /demo; change reading unit and spacing, reset, and observe default controls plus rail removal."
   },
   {
+    "id": "local-settings",
+    "claim": "Save this site’s rail, dim, reading unit, and spacing settings in browser storage.",
+    "where": "Landing facts, privacy policy, popup, and README",
+    "test": "npm run test:claims -- --grep @claim:local-settings",
+    "sandbox": "Fresh packaged extension and /demo; set rail, dim, paragraph, and wide spacing, reload the page, and observe every setting restored."
+  },
+  {
     "id": "private-network",
     "claim": "Use Reading Rail without an account, content upload, or tracking requests.",
     "where": "Landing privacy section, privacy policy, and README",

@@ -1,6 +1,6 @@
 # Reading Rail
 
-> Reading Rail is a free, private Chromium extension that places a movable focus rail over dense browser text without rewriting the page.
+> Reading Rail is a free browser extension that places a movable focus rail over dense browser text without replacing the page.
 
 - [Home](https://reading-rail.sociobot.in/): Product overview, features, and installation
 - [Demo](https://reading-rail.sociobot.in/demo/): Isolated sample reading rail with reset controls
