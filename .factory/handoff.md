@@ -1,100 +1,112 @@
-# Reading Rail v1 handoff — review 1 FAIL
+# Reading Rail repair 1 handoff — PASS
 
-## Current review status
+## Release identity
 
-**FAIL (2026-09-06)** — review 1 found 6 product/documentation findings and
-18 untested public claims. The live deployment matches implementation candidate
-`428dc81d3ab05e916d47813d3567f2b989cd499e`; documentation is at
-`9c1fc42773b47dba152dea24054ab8d972c45b2a`. The earlier verification below is
-historical evidence, not the current acceptance verdict. See
-[review-1.md](review-1.md) for evidence and required repairs.
+- Implementation SHA: `ee5cd8c0254ab485fdd152b1ed05c0067962e812`
+- Documentation SHA: recorded in the follow-up documentation commit for this handoff.
+- Live URL: <https://reading-rail.sociobot.in>
+- Deployed: 2026-09-06 via the existing `sf-reading-rail` static app. The
+  deployment completed successfully before the HTTPS cold checks below.
 
-The release must not be called PASS until it has an isolated one-click demo,
-claim manifest and tagged sandbox tests, a real 404, plain first-screen copy,
-complete site metadata/skeleton, and the outstanding response headers.
+## What changed
 
-## Verification status
+- Added a direct, one-click `/demo/` route with nine realistic library website
+  review notes, populated rail controls, persistent **Demo — sample data,
+  nothing is saved** label, **Reset demo**, and **Start for real**.
+- Kept demo state isolated in `demo:reading-rail:sample-state`. It neither
+  reads nor changes extension storage or a non-demo browser-storage key.
+- Added `.factory/claims.json`, `.factory/demo.md`, and 14 tagged Playwright
+  claim tests. The tests load the packaged extension against `/demo/` in fresh
+  browser contexts where the claim concerns the extension.
+- Rewrote the first screen in plain words: it names the job, readers with
+  dyslexia or visual crowding, and **Try it with sample data** as the first
+  action. `.factory/copy-audit.md` records the word-count audit.
+- Added a designed real `404.html` and Static Web Apps 404 response override.
+  Unknown live routes now return HTTP 404 with a route home.
+- Added metadata and shared structure across routes: canonical URLs, Open
+  Graph/Twitter image, Apple touch icon, Demo navigation, footer version and
+  Param Factory credit, robots/sitemap entries, and original-art disclosure.
+- Added CSP, anti-framing, COOP, `nosniff`, referrer, and permissions headers
+  through `staticwebapp.config.json`.
+- Added light and dark treatments; both pass serious/critical Axe checks.
+- Pinned Playwright to 1.58.2 and separated the Vitest and Playwright runners
+  so `npm test` works from a clean checkout.
 
-**PASS** — independent QA on 2026-08-27 verified candidate
-`b56e046777f4262cbd9162b87d7c4b77e71f941a` and the live deployment at
-https://reading-rail.sociobot.in. The live home/legal pages, JS, and CSS
-byte-match the candidate. The live extension ZIP has different archive
-metadata but every unpacked artifact is byte-identical and the downloaded ZIP
-passed a fresh extension smoke test.
+## Review finding disposition
 
-See [verification.md](verification.md) for exact command results, functional
-coverage, accessibility/performance results, headers, privacy/network evidence,
-and findings. There are no critical, high, or medium shipped-product defects.
-The only product observation is low severity: hosted pages do not currently
-send CSP/anti-framing/COOP headers. Full `npm audit` advisories are confined to
-development-only WXT dependencies; `npm audit --omit=dev` is clean.
+| Finding | Disposition |
+| --- | --- |
+| R1 — no isolated sample | Fixed by `/demo/`, `demo:` namespace, reset, banner, start-for-real exit, and isolation tests. |
+| R2 — no claims manifest/tests | Fixed with 14 observable claim tests and a clean `npm test` command. The old untestable wording about offline use, a three-minute install, and named browser compatibility was removed. |
+| R3 — no real 404 | Fixed with `404.html`, Static Web Apps response override, local verifier, and live HTTP 404 check. |
+| R4 — first-screen copy | Fixed with a job title, audience sentence, clear sample action, and three short facts before scrolling on desktop and phone. |
+| R5 — metadata/skeleton | Fixed on home, demo, privacy, terms, and 404 routes. |
+| R6 — response headers | Fixed in the static configuration and confirmed live on every public route. |
 
-## Shipped
+The earlier verification’s development-only dependency advisory note remains
+accurate. `npm audit --omit=dev` is clean; the full development dependency tree
+still reports WXT transitive advisories and is not shipped.
 
-- A WXT + TypeScript Manifest V3 Chromium extension that finds real rendered
-  text lines on ordinary web pages and places a pointer-transparent focus rail
-  over the current line or paragraph.
-- Keyboard navigation (`↑`/`↓`), instant `Escape`, global toggle and speech
-  shortcuts, adjustable surrounding dim, user-initiated browser TTS, and clear
-  empty/restricted/speech-error states.
-- Local, per-host Original/Open/Wide text-spacing settings. Wide provides 1.7
-  line height and WCAG test spacing of 0.12em between letters. No page content
-  or preferences are transmitted.
-- A compact accessible popup with light/dark treatments, 44px controls,
-  visible focus, live announcements, and reduced-motion behavior.
-- A responsive static landing site, interactive rail demonstration,
-  installation guide, privacy and terms pages, original generated hero art,
-  robots/sitemap/LLM metadata, and immutable asset-cache guidance.
-- A packaged extension at `dist/site/downloads/reading-rail-chrome.zip` and an
-  unpacked build at `dist/extension/` after the factory build.
+## Clean setup and verification
 
-## Run and verify
+From this repository on Node 22.23.2 and npm 10.9.8:
 
 ```sh
-npm install
+npm ci
 npm test
 npm run check
 npm run build
-npx vite preview --config vite.site.config.ts --host 127.0.0.1 --port 4173
+npm run preview:site
 VERIFY_URL=http://127.0.0.1:4173 npm run verify:site
 VERIFY_URL=http://127.0.0.1:4173 npm run verify:extension
+npm audit --omit=dev
 ```
 
-Verified on 2026-08-27 using Chromium 151:
+Results:
 
-- Unit tests: 6/6 pass.
-- Strict TypeScript: pass.
-- Clean `npm run build`: pass; `dist/site/index.html` exists.
-- Packaged extension smoke: popup → start rail → move → per-site spacing →
-  Escape, pass; zero serious/critical axe findings and no console errors.
-- Landing, privacy, and terms at 390 × 844: semantic checks pass, no horizontal
-  overflow, one `h1` and `main` each, zero serious/critical axe findings, and no
-  console errors.
-- Lighthouse mobile against the production build: Performance 100,
-  Accessibility 100, Best Practices 100, SEO 100; LCP 1.1 s, CLS 0, TBT 0 ms,
-  transferred weight 27 KiB.
-- Initial site JavaScript 0.94 KiB raw; CSS 10.76 KiB raw; mobile hero AVIF
-  18 KiB; extension total 37.27 KiB. All are within the factory budgets.
-- `npm audit --omit=dev`: zero production vulnerabilities.
+- `npm ci`: pass.
+- `npm test`: pass — 6 unit tests and 14 tagged clean-consumer claim tests.
+- `npm run check`: pass.
+- `npm run build`: pass — creates `dist/site/`, `dist/extension/`, and the
+  downloadable ZIP.
+- `verify:site`: pass — home/demo/privacy/terms semantics, mobile overflow,
+  console, Axe, demo move/reset, 404/status, headers, local links, skip-link
+  keyboard order, reduced motion, and dark-mode Axe.
+- `verify:extension`: pass — packaged extension popup, rail, movement,
+  spacing, Escape, and Axe.
+- `npm audit --omit=dev`: 0 vulnerabilities.
+- Lighthouse mobile JSON recorded Performance 100, Accessibility 100, Best
+  Practices 100, SEO 100; LCP 1,073ms, CLS 0, TBT 0ms, transferred 46KB. The
+  Lighthouse process reported a tab crash after writing this complete report,
+  so the JSON metrics are evidence rather than a successful CLI exit code.
 
-The generated source artwork and its exact prompt/model metadata are in
-`assets/src/`; the reviewed responsive AVIF/WebP/JPEG outputs are in
-`site/public/assets/`. See `.factory/design.md` for visual rationale and
-provenance.
+## Live verification
 
-## Known gaps and next steps
+Fresh desktop (1440 × 1000) and phone (390 × 844) contexts opened the live
+home page. Before scrolling, each showed:
 
-- Chrome blocks content extensions on internal/browser-store pages; the popup
-  explains this state. Canvas text, cross-origin embedded documents, and some
-  browser PDF viewers cannot expose usable text geometry.
-- Browser and operating-system speech voices vary, and a user-configured voice
-  may rely on its provider’s network service. Reading Rail itself has no
-  network code.
-- The downloadable zip is an unpacked/developer-install distribution. Store
-  signing and listing are factory deployment tasks.
-- Full `npm audit` reports advisories in WXT’s development-only Firefox runner
-  dependency chain. They are absent from production dependencies and shipped
-  artifacts; upgrade when WXT publishes a compatible fix.
-- The product success target (25% better place retention after interruption)
-  needs a timed study with target readers after distribution; this repository
-  supplies the working testable v1, not a claimed outcome.
+- Job: “Follow dense text one line at a time.”
+- Audience: readers with dyslexia or visual crowding.
+- First action: **Try it with sample data**, within the viewport.
+
+In both fresh contexts the action opened `/demo/`; the persistent label was
+visible, the populated sample moved from Line 1 of 9 to Line 2 of 9, and Reset
+demo returned it to Line 1 of 9. Live Axe found no serious or critical issue,
+there were no console errors, and requests stayed on the product origin.
+
+Live `/`, `/demo/`, `/privacy/`, `/terms/`, and `404.html` byte-match the built
+candidate. Live `/no-such-page` returns HTTP 404. CSP, X-Frame-Options, COOP,
+Referrer-Policy, and nosniff headers were present on home, demo, legal, and 404
+responses.
+
+## Known limits and next steps
+
+- Browser-protected pages, browser stores, some PDF viewers, canvas text, and
+  cross-origin embedded documents may not expose readable text geometry to a
+  content extension.
+- Read aloud uses browser/operating-system voices; a voice the user configured
+  separately may use that voice provider’s network service. Reading Rail has
+  no product network request for this feature.
+- The ZIP is an unpacked developer-install package. Store signing/listing and a
+  reader study of the brief’s 25% place-retention target remain future factory
+  work; the target is not advertised as an achieved result.
