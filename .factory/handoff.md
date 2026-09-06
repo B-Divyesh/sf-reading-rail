@@ -1,4 +1,17 @@
-# Reading Rail v1 handoff — independently verified PASS
+# Reading Rail v1 handoff — review 1 FAIL
+
+## Current review status
+
+**FAIL (2026-09-06)** — review 1 found 6 product/documentation findings and
+18 untested public claims. The live deployment matches implementation candidate
+`428dc81d3ab05e916d47813d3567f2b989cd499e`; documentation is at
+`9c1fc42773b47dba152dea24054ab8d972c45b2a`. The earlier verification below is
+historical evidence, not the current acceptance verdict. See
+[review-1.md](review-1.md) for evidence and required repairs.
+
+The release must not be called PASS until it has an isolated one-click demo,
+claim manifest and tagged sandbox tests, a real 404, plain first-screen copy,
+complete site metadata/skeleton, and the outstanding response headers.
 
 ## Verification status
 
