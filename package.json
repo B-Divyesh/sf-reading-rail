@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "wxt",
     "dev:site": "vite --config vite.site.config.ts",
-    "test": "vitest run",
+    "test": "npm run test:unit && npm run test:claims",
+    "test:unit": "vitest run",
     "test:watch": "vitest",
     "postinstall": "wxt prepare",
     "assets:optimize": "node scripts/optimize-assets.mjs",
@@ -15,12 +16,14 @@
     "build": "npm run clean && npm run build:site",
     "clean": "node scripts/clean.mjs",
     "check": "tsc --noEmit",
+    "preview:site": "node scripts/serve-site.mjs",
+    "test:claims": "npm run build && playwright test --config playwright.claims.config.ts",
     "verify:site": "node scripts/verify-site.mjs",
     "verify:extension": "node scripts/verify-extension.mjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",
-    "@playwright/test": "^1.62.1",
+    "@playwright/test": "1.58.2",
     "@types/chrome": "^0.0.321",
     "jsdom": "^26.1.0",
     "lighthouse": "^13.4.1",

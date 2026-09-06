@@ -11,6 +11,8 @@ const moveRail = (next: number) => {
   current = Math.max(0, Math.min(lines.length - 1, next));
   const paperRect = paper.getBoundingClientRect();
   const lineRect = lines[current].getBoundingClientRect();
+  paper.style.setProperty('--rail-top', `${lineRect.top - paperRect.top - 7}px`);
+  paper.style.setProperty('--rail-height', `${lineRect.height + 14}px`);
   rail.style.setProperty('--rail-top', `${lineRect.top - paperRect.top - 7}px`);
   rail.style.setProperty('--rail-height', `${lineRect.height + 14}px`);
   rail.querySelector('span')!.textContent = `Line ${current + 1} of ${lines.length}`;

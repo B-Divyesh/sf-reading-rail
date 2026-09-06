@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Try Reading Rail on a realistic sample without changing your browser settings." />
+    <meta name="theme-color" content="#f2efe7" />
+    <title>Demo — Reading Rail</title>
+    <link rel="canonical" href="https://reading-rail.sociobot.in/demo/" />
+    <link rel="icon" href="/assets/mark.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/assets/mark-180.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Demo — Reading Rail" />
+    <meta property="og:description" content="Try Reading Rail on a realistic sample without changing your browser settings." />
+    <meta property="og:url" content="https://reading-rail.sociobot.in/demo/" />
+    <meta property="og:image" content="https://reading-rail.sociobot.in/assets/reading-rail-social.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Demo — Reading Rail" />
+    <meta name="twitter:description" content="Try Reading Rail on a realistic sample without changing your browser settings." />
+    <meta name="twitter:image" content="https://reading-rail.sociobot.in/assets/reading-rail-social.jpg" />
+    <script type="module" src="/src/demo.ts"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header class="site-header wrap">
+      <a class="wordmark" href="/" aria-label="Reading Rail home">
+        <svg aria-hidden="true" viewBox="0 0 36 36"><rect x="1" y="1" width="34" height="34"/><path d="M7 10h22M7 18h22M7 26h22"/><path class="accent-line" d="M5 16h26v5H5z"/></svg>
+        <span>Reading Rail</span>
+      </a>
+      <nav aria-label="Main navigation">
+        <a href="/#how">How it works</a>
+        <a href="/demo/" aria-current="page">Demo</a>
+        <a href="/privacy/">Privacy</a>
+        <a class="nav-download" href="/downloads/reading-rail-chrome.zip" download>Download</a>
+      </nav>
+    </header>
+
+    <main class="demo-main wrap" id="main">
+      <section class="demo-intro" aria-labelledby="demo-title">
+        <p class="section-label">Sample reading view</p>
+        <h1 id="demo-title">Read the sample one line at a time</h1>
+        <p>Move through a project update with the rail. This demo does not change your extension settings.</p>
+      </section>
+
+      <section class="demo-banner" aria-label="Demo controls">
+        <p><strong>Demo — sample data, nothing is saved</strong><span id="demo-save-status" role="status" aria-live="polite"> Sample reset and ready.</span></p>
+        <div><button class="text-button" id="demo-reset" type="button">Reset demo</button><a class="button small-button" href="/">Start for real</a></div>
+      </section>
+
+      <section class="sample-app" aria-labelledby="sample-title">
+        <header class="sample-app-header">
+          <div><p class="section-label">Project update / 14 September</p><h2 id="sample-title">Library website review notes</h2></div>
+          <p class="sample-state" id="demo-status" role="status" aria-live="polite">Line 1 of 9</p>
+        </header>
+        <div class="sample-controls" aria-label="Sample rail controls">
+          <fieldset>
+            <legend>Reading unit</legend>
+            <label><input id="demo-mode-line" type="radio" name="demo-mode" value="line" checked /> One line</label>
+            <label><input id="demo-mode-paragraph" type="radio" name="demo-mode" value="paragraph" /> Paragraph</label>
+          </fieldset>
+          <label class="sample-range" for="demo-dim">Surrounding dim <output id="demo-dim-output" for="demo-dim">68%</output><input id="demo-dim" type="range" min="25" max="88" value="68" /></label>
+          <fieldset>
+            <legend>Sample spacing</legend>
+            <label><input type="radio" name="demo-spacing" value="original" checked /> Original</label>
+            <label><input type="radio" name="demo-spacing" value="wide" /> Wide</label>
+          </fieldset>
+        </div>
+        <div class="sample-reader" id="demo-paper" tabindex="0" aria-describedby="demo-reader-help">
+          <div class="demo-shade demo-shade-top" aria-hidden="true"></div>
+          <article id="demo-sample-copy">
+            <p class="demo-line">The public library team reviewed the website update after its Thursday test session.</p>
+            <p class="demo-line">Readers asked for clear labels before the catalogue search and account links.</p>
+            <p class="demo-line">The first change moves the “Renew books” action below the current loans list.</p>
+            <p class="demo-line">A second change adds a short explanation beside the address lookup field.</p>
+            <p class="demo-line">The team will test the revised page with three volunteers next Tuesday morning.</p>
+            <p class="demo-line">The notes link to the <a id="demo-reference-link" href="#sample-reference">sample reference</a> for the content checklist.</p>
+            <p class="demo-line">The checklist keeps dates, owners, and page sections in the same order as the review.</p>
+            <p class="demo-line">This makes the next handoff easier to scan after an interruption.</p>
+            <p class="demo-line">The final update records what changed and who will check it before publication.</p>
+          </article>
+          <div class="demo-shade demo-shade-bottom" aria-hidden="true"></div>
+          <div class="demo-rail" aria-hidden="true"><span>Line 1 of 9</span></div>
+        </div>
+        <div class="sample-footer">
+          <p id="demo-reader-help">Use the arrow buttons or focus the sample and press Arrow keys. Press Escape to return to the first line.</p>
+          <div class="demo-controls"><button type="button" id="demo-up" aria-label="Move focus to previous reading unit">↑</button><button type="button" id="demo-down" aria-label="Move focus to next reading unit">↓</button></div>
+        </div>
+        <p class="sample-reference" id="sample-reference">Sample reference: Website review checklist, library service team.</p>
+      </section>
+    </main>
+
+    <footer class="site-footer wrap">
+      <div class="wordmark"><svg aria-hidden="true" viewBox="0 0 36 36"><rect x="1" y="1" width="34" height="34"/><path d="M7 10h22M7 18h22M7 26h22"/><path class="accent-line" d="M5 16h26v5H5z"/></svg><span>Reading Rail</span></div>
+      <p>Local reading support. Original image generated for Reading Rail. Built by Param Factory. v1.0.0 repair-1.</p>
+      <nav aria-label="Footer navigation"><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="https://github.com/B-Divyesh/sf-reading-rail">Source</a></nav>
+    </footer>
+  </body>
+</html>

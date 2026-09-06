@@ -6,6 +6,8 @@ graphify-out/
 .output/
 dist/
 coverage/
+test-results/
+playwright-report/
 *.log
 .factory/*.png
 .factory/lighthouse.json

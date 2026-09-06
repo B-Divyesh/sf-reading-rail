@@ -9,6 +9,8 @@ await Promise.all([
   sharp(source).resize(768, 512, { fit: 'cover' }).avif({ quality: 48 }).toFile(`${output}-768.avif`),
   sharp(source).resize(1280, 853, { fit: 'cover' }).avif({ quality: 50 }).toFile(`${output}-1280.avif`),
   sharp(source).resize(1280, 853, { fit: 'cover' }).jpeg({ quality: 76, progressive: true }).toFile(`${output}-1280.jpg`),
+  sharp(source).resize(1200, 630, { fit: 'cover', position: 'centre' }).jpeg({ quality: 82, progressive: true }).toFile('site/public/assets/reading-rail-social.jpg'),
+  sharp('site/public/assets/mark.svg').resize(180, 180).png().toFile('site/public/assets/mark-180.png'),
 ]);
 
 console.log('Optimized responsive hero assets.');

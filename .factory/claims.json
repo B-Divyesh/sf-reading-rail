@@ -1,0 +1,100 @@
+[
+  {
+    "id": "demo-sample",
+    "claim": "Try a populated reading sample in one click.",
+    "where": "Landing first action and /demo",
+    "test": "npm run test:claims -- --grep @claim:demo-sample",
+    "sandbox": "Fresh browser context; landing action opens /demo with nine realistic reading notes."
+  },
+  {
+    "id": "demo-isolation",
+    "claim": "Demo settings use separate storage and never change real settings.",
+    "where": "/demo banner and .factory/demo.md",
+    "test": "npm run test:claims -- --grep @claim:demo-isolation",
+    "sandbox": "Fresh browser context with a real-settings sentinel; exercise demo controls and assert only demo: storage changes."
+  },
+  {
+    "id": "demo-reset",
+    "claim": "Reset demo returns the sample to its initial line.",
+    "where": "/demo banner",
+    "test": "npm run test:claims -- --grep @claim:demo-reset",
+    "sandbox": "Fresh browser context; move the sample rail, reset, and assert Line 1 of 9."
+  },
+  {
+    "id": "rail-line",
+    "claim": "Move the rail through browser text one line at a time.",
+    "where": "Landing feature list and README",
+    "test": "npm run test:claims -- --grep @claim:rail-line",
+    "sandbox": "Fresh packaged extension and /demo; start the rail and move to the next readable line."
+  },
+  {
+    "id": "rail-paragraph",
+    "claim": "Focus a paragraph instead of a line.",
+    "where": "Landing feature list and README",
+    "test": "npm run test:claims -- --grep @claim:rail-paragraph",
+    "sandbox": "Fresh packaged extension and /demo; change the reading unit and observe a paragraph place label."
+  },
+  {
+    "id": "page-intact",
+    "claim": "Keep links and text selection available while the rail is active.",
+    "where": "Landing feature list and README",
+    "test": "npm run test:claims -- --grep @claim:page-intact",
+    "sandbox": "Fresh packaged extension and /demo; activate the rail, follow a sample link, and select visible text."
+  },
+  {
+    "id": "rail-reflow",
+    "claim": "Keep the rail aligned after text reflows.",
+    "where": "Landing feature list and README",
+    "test": "npm run test:claims -- --grep @claim:rail-reflow",
+    "sandbox": "Fresh packaged extension and /demo; activate paragraph mode, change viewport width, and assert the band remains visible."
+  },
+  {
+    "id": "dim-surroundings",
+    "claim": "Dim surrounding text while keeping the current text visible.",
+    "where": "Landing feature list and README",
+    "test": "npm run test:claims -- --grep @claim:dim-surroundings",
+    "sandbox": "Fresh packaged extension and /demo; set 88% surrounding dim and observe overlay opacity."
+  },
+  {
+    "id": "spacing-local",
+    "claim": "Save original, open, or wide text spacing locally for one site only.",
+    "where": "Landing feature list, privacy, and README",
+    "test": "npm run test:claims -- --grep @claim:spacing-local",
+    "sandbox": "Fresh packaged extension; use wide and open spacing on /demo, measure rendered CSS, then verify another host stays original."
+  },
+  {
+    "id": "browser-speech",
+    "claim": "Use browser speech for the selected text.",
+    "where": "Landing feature list and README",
+    "test": "npm run test:claims -- --grep @claim:browser-speech",
+    "sandbox": "Fresh packaged extension and /demo; start the rail and observe Read aloud change to Stop reading."
+  },
+  {
+    "id": "keyboard-escape",
+    "claim": "Use Arrow keys to move the rail and Escape to hide it.",
+    "where": "Landing feature list and README",
+    "test": "npm run test:claims -- --grep @claim:keyboard-escape",
+    "sandbox": "Fresh packaged extension and /demo; press ArrowDown then Escape and observe movement and rail removal."
+  },
+  {
+    "id": "reset-local",
+    "claim": "Reset this site returns its reading settings to defaults.",
+    "where": "Extension Reset this site control and privacy policy",
+    "test": "npm run test:claims -- --grep @claim:reset-local",
+    "sandbox": "Fresh packaged extension and /demo; change reading unit and spacing, reset, and observe default controls plus rail removal."
+  },
+  {
+    "id": "private-network",
+    "claim": "Use Reading Rail without an account, content upload, or tracking requests.",
+    "where": "Landing privacy section, privacy policy, and README",
+    "test": "npm run test:claims -- --grep @claim:private-network",
+    "sandbox": "Fresh packaged extension and /demo; capture all requests during rail, movement, and spacing use; assert only same-origin GETs."
+  },
+  {
+    "id": "free-download",
+    "claim": "Download the extension without an account.",
+    "where": "Landing facts and README",
+    "test": "npm run test:claims -- --grep @claim:free-download",
+    "sandbox": "Fresh browser context; download the packaged extension directly and assert the page does not navigate to sign-in or checkout."
+  }
+]

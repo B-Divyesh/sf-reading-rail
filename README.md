@@ -1,73 +1,92 @@
 # Reading Rail
 
-Reading Rail is a free Chromium extension for readers who lose their place in
-dense browser text or experience visual crowding. It places a keyboard-movable
-focus rail over the original page, dims the surroundings, offers per-site WCAG
-text-spacing presets, and can read the current line with the browser’s own
-speech service.
+Reading Rail is a free Chrome extension for readers with dyslexia or visual
+crowding who need a clear place in dense browser text. It moves a focus rail
+through text one line or paragraph at a time without replacing the page.
 
-It deliberately does not replace the page, change its font, summarise content,
-track reading, or make medical claims. Page content never leaves the browser.
+Try the isolated sample first: <https://reading-rail.sociobot.in/demo/>.
+The sample uses `demo:` browser storage, so its controls do not change your
+extension settings.
 
-Live site: <https://reading-rail.sociobot.in>
+## What it does
 
-## Features
+- Moves the rail through readable browser text one line at a time
+- Focuses a line or a paragraph, and keeps links and text selection available
+- Keeps the rail visible after the page reflows
+- Dims surrounding text while leaving the current reading unit visible
+- Saves original, open, or wide text spacing for one site only
+- Starts browser speech for the selected text
+- Uses Arrow keys to move and Escape to hide the rail
+- Needs no account, content upload, or tracking request
 
-- One-line or paragraph focus, aligned to the page’s rendered text
-- Arrow-key navigation and instant `Escape` exit
-- `Alt/Option + Shift + R` global toggle and `Alt/Option + Shift + S` speech toggle
-- Adjustable surrounding dim and three per-site spacing presets
-- Built-in browser text-to-speech for the current line or paragraph
-- Local-only settings; no accounts, analytics, network calls, or content upload
-- Light and dark popup treatments, reduced-motion support, and 44px controls
+Each statement above is declared in [.factory/claims.json](.factory/claims.json)
+and has a tagged browser test that runs against the sample page.
 
-## Develop and test
+## Install
 
-Requires Node.js 20+ and npm.
+1. Download `reading-rail-chrome.zip` from the live site.
+2. Unzip it.
+3. Open `chrome://extensions`, turn on Developer mode, and choose **Load
+   unpacked**.
+4. Select the unzipped folder and open Reading Rail on a text page.
+
+Browser-protected pages, browser stores, PDF viewers, and unusually rendered
+pages may not expose usable text to a browser extension.
+
+## Develop and verify
+
+Requires Node.js 20+ and npm. Playwright is pinned to 1.58.2; its Chromium
+browser is required for the consumer and claim checks.
 
 ```sh
-npm install
-npm run dev          # WXT extension development server
-npm run dev:site     # landing site at http://localhost:5173
-npm run check        # strict TypeScript
-npm test             # unit tests
-npm run build        # reproducible extension + site build
-npm run verify:site  # axe + semantics + console checks (site server required)
-npm run verify:extension # packaged extension smoke test (site server required)
+npm ci
+npm test
+npm run check
+npm run build
+npm run preview:site
+VERIFY_URL=http://127.0.0.1:4173 npm run verify:site
+VERIFY_URL=http://127.0.0.1:4173 npm run verify:extension
 ```
 
-The exact factory build command is `npm run build`. Outputs:
+`npm test` runs the unit suite and every claim in a fresh browser setup. To
+run one declared claim, copy its command from `.factory/claims.json`, for
+example:
+
+```sh
+npm run test:claims -- --grep @claim:demo-isolation
+```
+
+The factory build command is `npm run build`. It produces:
 
 - `dist/extension/` — unpacked Chrome MV3 extension
-- `dist/site/` — deployable static site (with `index.html` at its root)
-- `dist/site/downloads/reading-rail-chrome.zip` — packaged extension linked by the site
+- `dist/site/` — deployable static site
+- `dist/site/downloads/reading-rail-chrome.zip` — extension package linked by the site
 
-To test the extension manually, open `chrome://extensions`, enable Developer
-mode, choose **Load unpacked**, and select `dist/extension/`. Open a text-heavy
-article and click the toolbar icon.
+## Privacy and sample data
+
+The extension stores per-site settings in local browser storage. Its page
+content stays in the browser; it has no account flow or tracking request.
+The demo is separate from extension storage and has **Reset demo** plus
+**Start for real** controls. See [.factory/demo.md](.factory/demo.md) and
+[the privacy policy](site/privacy/index.html) for details.
 
 ## Project layout
 
 - `entrypoints/` — WXT background, content, and popup entrypoints
 - `lib/` — settings and rail geometry shared with tests
-- `site/` — Vite static landing, privacy, and terms pages
+- `site/` — static landing, demo, privacy, terms, and 404 pages
+- `tests/claims/` — clean-consumer claim tests
 - `assets/src/` — original generated artwork and provenance
 - `.factory/design.md` — product-specific visual system
 - `.factory/handoff.md` — build and verification record
 
-## Privacy and permissions
-
-`storage` keeps site-specific preferences locally. `activeTab` lets the popup
-talk to the current page, and `<all_urls>` lets the focus rail work wherever a
-reader opens ordinary web content. Browser-protected pages remain inaccessible.
-See [site/privacy/index.html](site/privacy/index.html) for the shipped policy.
-
 ## Deploy
 
-Deploy `dist/site/` as a static directory. The Param Factory owns deployment,
-DNS, and billing; this repository does not modify infrastructure.
+Deploy `dist/site/` as a static directory using its included
+`staticwebapp.config.json`. The Param Factory owns deployment and DNS; this
+repository does not modify infrastructure.
 
 ## License
 
 MIT. Generated artwork is original to the project and covered by the same
-license; its prompt and review record are in `assets/src/hero-reading-rail.json`.
+license. Its prompt and review record are in `assets/src/hero-reading-rail.json`.
