@@ -3,7 +3,7 @@
 ## Release identity
 
 - Implementation SHA: `a1ad87e6447fbddec21b74e6364406137b3ffb3a`
-- Documentation SHA: recorded in the follow-up documentation commit for this revised handoff.
+- Documentation SHA: `c5ae2c435c658d175cfc27e11f7a5bd341fb942a` (revised repair handoff report).
 - Live URL: <https://reading-rail.sociobot.in>
 - Deployed: 2026-09-06 via the existing `sf-reading-rail` static app. The
   deployment completed successfully before the HTTPS cold checks below.
