@@ -1,5 +1,26 @@
 # Reading Rail repair 1 handoff — PASS
 
+## Independent verification 2
+
+- Verification report: `.factory/verification-2.md`
+- Implementation reviewed: `a1ad87e6447fbddec21b74e6364406137b3ffb3a`
+- Documentation baseline reviewed: `a291140ffc042f907da91eb3caa5e48c4f82a9f5`
+- Result: **FAIL — 1 medium finding and 0 untested public claims.**
+
+The independent verifier used a clean detached checkout, completed `npm ci`,
+ran every one of the 15 declared claim commands separately, then ran `npm test`,
+type check, build, site verifier, extension verifier, and production audit.
+Fresh live desktop and phone checks confirmed the job, audience, visible sample
+action, isolated populated demo, reset, real-settings sentinel protection,
+accessibility, reduced motion, privacy requests, legal routes, links, headers,
+and designed 404. A clean Chromium profile loaded the ZIP downloaded from live;
+normal, boundary, invalid-settings, protected-page, keyboard, and Escape paths
+passed. Live static files and unpacked ZIP files match the implementation build.
+One demo-sandbox defect remains: **Start for real** returns home but leaves
+`demo:reading-rail:sample-state` in local storage. It does not touch real
+extension settings, but leaving demo must discard that key or explicitly offer
+the user a one-time keep choice. See V2-1 in `.factory/verification-2.md`.
+
 ## Release identity
 
 - Implementation SHA: `a1ad87e6447fbddec21b74e6364406137b3ffb3a`
@@ -36,8 +57,8 @@
 
 | Finding | Disposition |
 | --- | --- |
-| R1 — no isolated sample | Fixed by `/demo/`, `demo:` namespace, reset, banner, start-for-real exit, and isolation tests. |
-| R2 — no claims manifest/tests | Fixed with 14 observable claim tests and a clean `npm test` command. The old untestable wording about offline use, a three-minute install, and named browser compatibility was removed. |
+| R1 — no isolated sample | Partially fixed: `/demo/`, `demo:` namespace, reset, banner, and isolation tests work; V2-1 found that Start for real leaves the demo key behind. |
+| R2 — no claims manifest/tests | Fixed with 15 observable claim tests and a clean `npm test` command. The old untestable wording about offline use, a three-minute install, and named browser compatibility was removed. |
 | R3 — no real 404 | Fixed with `404.html`, Static Web Apps response override, local verifier, and live HTTP 404 check. |
 | R4 — first-screen copy | Fixed with a job title, audience sentence, clear sample action, and three short facts before scrolling on desktop and phone. |
 | R5 — metadata/skeleton | Fixed on home, demo, privacy, terms, and 404 routes. |
